@@ -1,0 +1,91 @@
+#include<stdio.h>
+#include<graphics.h>
+#include<dos.h>
+#include<conio.h>
+int main()
+{
+
+    int gd = DETECT,gm;
+initgraph(&gd, &gm, "C:\\TC\\BGI");
+char c, buff[15];
+int score=0,o=0,miss=0;
+int x=400,y=200,i=1,k=0,ya=275,yb=125;
+int ch=ya,ch1=yb;
+int x1=x+320;
+setbkcolor(4);
+while(i<2000)
+{
+
+cleardevice();
+if(miss==50)
+    goto sos;
+x=x-6;
+if(x<0)
+{
+x=640;
+ if(rand()%2==0)
+    ch=ya;
+ else
+    ch=yb;
+
+
+
+}
+if(x==40)
+{{if((ch>y-70)&&(ch<y+20))
+score++;
+else
+    miss++;
+}
+}
+setcolor(14);
+rectangle(x,ch,x+50,ch+50);
+
+x1=x1-6;
+if(x1<0)
+{
+x1=640;
+ if(rand()%2==0)
+    ch1=ya;
+ else
+    ch1=yb;
+
+
+
+}
+setcolor(14);
+rectangle(x1,ch1,x1+50,ch1+50);
+if(x1==40)
+{{if((ch1>y-70)&&(ch1<y+20))
+score++;
+else
+    miss++;
+}
+}
+if(kbhit()!=0)
+{c=getch();
+    if(c=='P')
+        y=(y+10)%640;
+if(c=='H')
+    {
+        y=y-10;
+        if(y<0) y=640;
+    }
+}
+
+circle(20,y,20);
+
+delay(10);
+
+i++;
+}
+sos:closegraph();
+printf("enter 1 to know ur score");
+scanf("%d",&o);
+if(o==1)
+printf("score is=%d",score);
+return 0;
+
+
+
+}
